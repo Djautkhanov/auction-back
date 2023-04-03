@@ -1,6 +1,6 @@
 const Item = require("../models/Item.model");
 
-module.exports = itemController = {
+module.exports.itemController = {
   addItems: async (req, res) => {
     try {
       const items = await Item.create({
@@ -18,7 +18,7 @@ module.exports = itemController = {
 
   getItems: async (req, res) => {  
     try {
-      const items = await Item.find();
+      const items = await Item.find().populate('category') 
       return res.json(items);
     } catch (error) {
       return res.json(error.message);

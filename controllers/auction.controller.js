@@ -16,7 +16,7 @@ module.exports.auctionController = {
   },
   deleteAuction: async (req, res) => {
     try {
-      await Auction.findByIdAndDelete(req.params.id);
+      await Auction.findByIdAndDelete(req.params.id);   
       res.json("deleted");
     } catch (error) {
       res.json(error.message);
@@ -24,7 +24,7 @@ module.exports.auctionController = {
   },
   getAuction: async (req, res) => {
     try {
-      const auctions = await Auction.find();
+      const auctions = await Auction.find()
       res.json(auctions);
     } catch (error) {
       res.json(error.message);
