@@ -26,10 +26,13 @@ const auctionSchema = new mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: "User",
         required: true,
+        default: null
       },
       amount: {
         type: Number,
         required: true,
+        default: null
+
       },
     },
   ],

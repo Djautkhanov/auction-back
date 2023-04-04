@@ -4,13 +4,12 @@ const moment = require("moment");
 module.exports.auctionController = {
   addAuction: async (req, res) => {
     try {
-      const start = moment(req.body.start_time, "YYYY-MM-DDTHH:mm:ss.sssZ").toDate()
+      const start = moment(req.body.start_time, "YYYY-MM-DDTHH:mm:ss.sssZ").toDate()  
       const end = moment(req.body.end_time, "YYYY-MM-DDTHH:mm:ss.sssZ").toDate()
       const auction = await Auction.create({
         item_id: req.body.item_id,
         start_time: start,
         end_time: end,
-        rate: [{ user_id: null, amount: null }],
       });
       return res.json(auction);
     } catch (error) {

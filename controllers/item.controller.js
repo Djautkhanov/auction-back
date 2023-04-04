@@ -7,7 +7,7 @@ module.exports.itemController = {
         img: req.body.img,
         name: req.body.name,
         description: req.body.description,
-        startyng_price: req.body.start_price,       
+        starting_price: req.body.starting_price,       
         user_id: req.body.user_id,
       });
       return res.json(items);
