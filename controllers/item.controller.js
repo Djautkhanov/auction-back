@@ -3,29 +3,29 @@ const path = require('path')
 
 module.exports.itemController = {
   addItems: async (req, res) => {
-    // console.log(path.extname(req.files.img));
+    console.log( 'req', req.files);
     try {
       const image = req.files.img
-      // console.log(req.files)
       const imgName =  image.name
-      // `${new Date().toISOString()}${path.extname(image.name)}`
-      const  uploadPath = './uploads/' + imgName ;
-      image.mv(uploadPath , err => {
+        const  uploadPath = './uploads/' + imgName ;
+      image.mv(uploadPath , err => {  
         if (err) {
-          return res.json(err)  
+          return res.json(["mverror",err])  
         }
-        res.json("completed")
+       console.log("completed")
       })
 
-      // const items = await Item.create({
-      //   img: req.file.path,
-      //   name: req.body.name,
-      //   description: req.body.description,
-      //   starting_price: req.body.starting_price,       
-      //   user_id: req.body.user_id,
-      // });
-      // return res.json(items);
+      const items = await Item.create({
+        img: imgName,
+        name: req.body.name,
+        description: req.body.description,
+        starting_price: req.body.starting_price,       
+        user_id: req.body.user_id,
+        category: req.body.category
+      });
+      return res.json(items);
     } catch (error) {
+      console.log('CATCH', error.message)
       return res.json(error.message);
     }
   },

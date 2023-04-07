@@ -21,6 +21,10 @@ const itemSchema = new mongoose.Schema({
     ref: 'User',
     // required: true,
   },
+  category: {
+    type: String,
+    // required: true,
+  }
 });
 
 const Item  = mongoose.model('Item', itemSchema);
