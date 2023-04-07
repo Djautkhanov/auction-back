@@ -8,7 +8,7 @@ const auctionSchema = new mongoose.Schema({
   },
 
   category:{
-    type: mongoose.SchemaTypes.ObjectId,
+    type: mongoose.SchemaTypes.ObjectId,  
     ref: 'Category'
   },     
 
