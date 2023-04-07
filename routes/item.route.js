@@ -1,11 +1,11 @@
 const Router = require('express')
-const {itemsController} = require('../controllers/item.controller')
+const { itemController } = require('../controllers/item.controller')
 
 const router = Router() 
 
-router.post('items', itemsController.addItems)
-router.get('items', itemsController.getItems)
-router.patch('items/:id', itemsController.editItems)
-router.delete('items/:id', itemsController.deleteItems)
+router.post('items', itemController.addItems)
+router.get('items', itemController.getItems)
+router.patch('items/:id', itemController.editItems)
+router.delete('items/:id', itemController.deleteItems)  
 
 module.exports = router  

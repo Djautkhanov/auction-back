@@ -19,7 +19,7 @@ module.exports = userController = {
                 return res.status(401).json({ message: "Ошибка при регистрации", errors })
             }
 
-            const { login, password } = req.body
+            const { login, password, firstName, lastName } = req.body
             const candidate = await User.findOne({ login })
 
             if (candidate) {
@@ -27,7 +27,7 @@ module.exports = userController = {
             }
 
             const hash = await bcrypt.hash(password, Number(process.env.BCRYPT_ROUNDS))
-            const user = await User.create({ login: login, password: hash })
+            const user = await User.create({ login, password: hash, firstName, lastName })
 
             await user.save()
             res.json("Пользователь успешно зарегистрирован")

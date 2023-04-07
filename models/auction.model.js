@@ -6,6 +6,12 @@ const auctionSchema = new mongoose.Schema({
     ref: "Item",
     required: true,
   },
+
+  category:{
+    type: mongoose.SchemaTypes.ObjectId,
+    ref: 'Category'
+  },     
+
   start_time: {
     type: Date,
     required: true,
