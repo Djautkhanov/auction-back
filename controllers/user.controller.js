@@ -6,8 +6,15 @@ const { validationResult } = require('express-validator')
 module.exports = userController = {
 
     getAllUsers: async (req, res) => {
-        const users = await User.find()
+
+        try {
+            const users = await User.find()
         res.json(users)
+
+        } catch(e) {
+            return res.status(401).json('Ошибка...')
+        }
+        
     },
 
     registerUser: async (req, res) => {
@@ -34,7 +41,7 @@ module.exports = userController = {
         }
 
         catch (e) {
-            return res.status(401).json("Ошибка регистрации")
+            return res.status(401).json(e.message)
         }
 
     },
