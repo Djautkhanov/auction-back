@@ -1,9 +1,9 @@
 const mongoose = require('mongoose');
 
 const itemSchema = new mongoose.Schema({
-   
-  img:{
-    type:String,
+
+  img: {
+    type: String,
   },
   name: {
     type: String,
@@ -31,6 +31,6 @@ const itemSchema = new mongoose.Schema({
   }
 });
 
-const Item  = mongoose.model('Item', itemSchema);
+const Item = mongoose.model('Item', itemSchema);
 
 module.exports = Item  
