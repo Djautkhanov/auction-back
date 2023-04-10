@@ -14,16 +14,20 @@ const itemSchema = new mongoose.Schema({
   },
   starting_price: {
     type: Number,
-    // required: true,
+    required: true,
+  },
+  blitzPrice: {
+    type: Number,
+    required: true,
   },
   user_id: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'User',
-    // required: true,
+    required: true,
   },
   category: {
     type: String,
-    // required: true,
+    required: true,
   }
 });
 

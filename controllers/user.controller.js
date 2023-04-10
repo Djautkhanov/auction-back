@@ -45,6 +45,15 @@ module.exports = userController = {
         }
 
     },
+    getUserId : async (req, res) => {
+        try {
+            const userToken = await jwt.verify(req.headers.authorization, process.env.SECRET_JWT_KEY)
+            
+            return await res.json(userToken.id)
+        } catch (error) {
+            return res.json(error)
+        }
+    },
 
     login: async (req, res) => {
 
@@ -53,12 +62,12 @@ module.exports = userController = {
             const candidate = await User.findOne({ login: login })
 
             if (!candidate) {
-                return res.status(401).json({ message: `Пользователь ${login} не найден` })
+                return res.status(401).json({ error: `Пользователь ${login} не найден` })
             }
 
             const valid = await bcrypt.compare(password, candidate.password)
             if (!valid) {
-                return res.status(401).json("Неверный пароль")
+                return res.status(401).json({error: "Неверный пароль"})
             }
 
             const payload = {

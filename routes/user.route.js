@@ -12,7 +12,10 @@ router.post('/registration', [
 ], userController.registerUser)
 
 router.post('/auth', userController.login)
-router.get('/users', authMiddleware, userController.getAllUsers) 
+
+router.get('/users', userController.getAllUsers) 
+router.get('/user/token', userController.getUserId) 
+
 
 
 module.exports = router
