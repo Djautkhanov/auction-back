@@ -1,9 +1,8 @@
 const mongoose = require('mongoose');
 
 const itemSchema = new mongoose.Schema({
-   
-  img:{
-    type:String,
+  img: {
+    type: String,
   },
   name: {
     type: String,
@@ -28,9 +27,15 @@ const itemSchema = new mongoose.Schema({
   category: {
     type: String,
     required: true,
-  }
+  },
+  status: {
+    type: String,
+    enum: ['Выставить на аукцион', 'На аукционе', 'Продано'],
+    default: 'Выставить на аукцион',
+    required: true,
+  },
 });
 
-const Item  = mongoose.model('Item', itemSchema);
+const Item = mongoose.model("Item" , itemSchema)
 
-module.exports = Item  
+module.exports = Item

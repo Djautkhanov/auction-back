@@ -6,8 +6,15 @@ const { validationResult } = require('express-validator')
 module.exports = userController = {
 
     getAllUsers: async (req, res) => {
-        const users = await User.find()
+
+        try {
+            const users = await User.find()
         res.json(users)
+
+        } catch(e) {
+            return res.status(401).json('Ошибка...')
+        }
+        
     },
 
     registerUser: async (req, res) => {
@@ -19,7 +26,7 @@ module.exports = userController = {
                 return res.status(401).json({ message: "Ошибка при регистрации", errors })
             }
 
-            const { login, password } = req.body
+            const { login, password, firstName, lastName } = req.body
             const candidate = await User.findOne({ login })
 
             if (candidate) {
@@ -27,14 +34,14 @@ module.exports = userController = {
             }
 
             const hash = await bcrypt.hash(password, Number(process.env.BCRYPT_ROUNDS))
-            const user = await User.create({ login: login, password: hash })
+            const user = await User.create({ login, password: hash, firstName, lastName })
 
             await user.save()
             res.json("Пользователь успешно зарегистрирован")
         }
 
         catch (e) {
-            return res.status(401).json("Ошибка регистрации")
+            return res.status(401).json(e.message)
         }
 
     },

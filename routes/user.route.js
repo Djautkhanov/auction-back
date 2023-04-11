@@ -1,5 +1,6 @@
 const { Router } = require('express')
 const userController = require('../controllers/user.controller')
+const authMiddleware = require('../middleware/auth.middleware')
 const {check} = require('express-validator')
 
 const router = Router()
@@ -11,8 +12,10 @@ router.post('/registration', [
 ], userController.registerUser)
 
 router.post('/auth', userController.login)
+
 router.get('/users', userController.getAllUsers) 
 router.get('/user/token', userController.getUserId) 
+
 
 
 module.exports = router

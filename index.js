@@ -20,13 +20,13 @@ app.use(require("./routes/user.route"))
 
 async function start() {
     try {
-      await mongoose.connect(MONGO_URL);
-      app.listen(PORT, () => {
-        console.log(`Server started: http://localhost:${PORT}/`);
-      });
+        await mongoose.connect(MONGO_URL);
+        app.listen(PORT, () => {
+            console.log(`Server started: http://localhost:${PORT}/`);
+        });
     } catch (err) {
-      console.log(`Error: ${err}`);
+        console.log(`Error: ${err}`);
     }
-  }
-  
-  start();
+}
+
+start();
