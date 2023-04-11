@@ -16,10 +16,14 @@ const itemSchema = new mongoose.Schema({
     type: Number,
     required: true,
   },
+  blitzPrice: {
+    type: Number,
+    required: true,
+  },
   user_id: {
     type: mongoose.Schema.Types.ObjectId,          
     ref: 'User',
-    required: true, 
+    required: true,
   },
   category: {
     type: String,
