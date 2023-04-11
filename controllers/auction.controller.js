@@ -1,11 +1,23 @@
+const Item = require("../models/Item.model");
 const Auction = require("../models/auction.model");
 const moment = require("moment");
 
 module.exports.auctionController = {
   addAuction: async (req, res) => {
     try {
-      const start = moment(req.body.start_time, 'ddd MMM DD YYYY HH:mm:ss [GMT]ZZ [(]Z[)]').toDate()  
-      const end = moment(req.body.end_time, "ddd MMM DD YYYY HH:mm:ss [GMT]ZZ [(]Z[)]").toDate()
+      await Item.findByIdAndUpdate(req.params.id, {
+        status: "На аукционе",
+      });
+
+      const start = moment(
+        req.body.start_time,
+        "ddd MMM DD YYYY HH:mm:ss [GMT]ZZ [(]Z[)]"
+      ).toDate();
+      const end = moment(
+        req.body.end_time,
+        "ddd MMM DD YYYY HH:mm:ss [GMT]ZZ [(]Z[)]"
+      ).toDate();
+
       const auction = await Auction.create({
         item_id: req.body.item_id,
         start_time: start,
@@ -18,7 +30,7 @@ module.exports.auctionController = {
   },
   deleteAuction: async (req, res) => {
     try {
-      await Auction.findByIdAndDelete(req.params.id);   
+      await Auction.findByIdAndDelete(req.params.id);
       res.json("deleted");
     } catch (error) {
       res.json(error.message);
@@ -26,7 +38,7 @@ module.exports.auctionController = {
   },
   getAuction: async (req, res) => {
     try {
-      const auctions = await Auction.find()
+      const auctions = await Auction.find();
       res.json(auctions);
     } catch (error) {
       res.json(error.message);
