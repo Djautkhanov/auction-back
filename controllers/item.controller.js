@@ -6,7 +6,7 @@ module.exports.itemController = {
     try {
       const image = req.files.img
       const imgName =  image.name
-        const  uploadPath = './uploads/' + imgName ;
+        const  uploadPath = './uploads/' + imgName ;   
       image.mv(uploadPath , err => {  
         if (err) {
           return res.json({error: err.message})  
@@ -32,7 +32,7 @@ module.exports.itemController = {
   getItems: async (req, res) => {  
     try {
       const items = await Item.find().populate('category') 
-      return res.json(items);
+      return res.json(items);  
     } catch (error) {
       return res.json(error.message);
     }

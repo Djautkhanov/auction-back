@@ -7,7 +7,7 @@ const auctionSchema = new mongoose.Schema({
     required: true,
   },
   category: {
-    type: mongoose.SchemaTypes.ObjectId,
+    type: mongoose.SchemaTypes.ObjectId,       
     ref: "Category",
   },
   start_time: {   
@@ -21,7 +21,7 @@ const auctionSchema = new mongoose.Schema({
   rate: [
     {
       user_id: {
-        type: mongoose.Schema.Types.ObjectId,
+        type: mongoose.Schema.Types.ObjectId,     
         ref: "User",
         required: true,
         default: null,
