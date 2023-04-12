@@ -25,7 +25,7 @@ async function start() {
             console.log(`Server started: http://localhost:${PORT}/`);
         });
     } catch (err) {
-        console.log(`Error: ${err}`);
+        console.log(`Error: ${err}`);   
     }
 }
 

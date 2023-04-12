@@ -5,18 +5,18 @@ const moment = require("moment");
 module.exports.auctionController = {
   addAuction: async (req, res) => {
     try {
-      await Item.findByIdAndUpdate(req.params.id, {
+     const item = await Item.findByIdAndUpdate(req.body.item_id, {
         status: "На аукционе",
-      });
-
+      },{new: true});
+      console.log("itemds" ,item);
       const start = moment(
         req.body.start_time,
         "ddd MMM DD YYYY HH:mm:ss [GMT]ZZ [(]Z[)]"
-      ).toDate();
+      ).utc().toDate()
       const end = moment(
         req.body.end_time,
         "ddd MMM DD YYYY HH:mm:ss [GMT]ZZ [(]Z[)]"
-      ).toDate();
+      ).utc().toDate();
 
       const auction = await Auction.create({
         item_id: req.body.item_id,
